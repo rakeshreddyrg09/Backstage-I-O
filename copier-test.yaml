@@ -42,14 +42,5 @@ spec:
       input:
         contents: "hello"
         filename: "xyz.yaml"
-    - id: publish
-      name: Publish to github ()
-      action: publish:guthub
-      input:
-        allowedHosts: ['github.com']
-        # repoUrl: github.com/${{ parameters.githubGroup }}/${{ parameters.name }}
-        repoUrl: ${{ parameters.publishUrl }}
-        defaultBranch: main
-        gitCommitMessage: Initial commit for ${{ parameters.name }}
 
 
