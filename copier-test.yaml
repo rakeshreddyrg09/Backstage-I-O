@@ -1,9 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: gitlab-fetch-template
-  title: Fetch GitLab Template
-  description: Template to fetch a GitLab repo and push to a provided group in the  GitLab instance
+  name: github-fetch-template
+  title: Fetch github Template
+  description: Template to fetch a github repo and push to a provided group in the  github instance
 spec:
   owner: backstage/scaffolder-core
   type: service
@@ -17,7 +17,7 @@ spec:
         publishUrl:
           title: Destination Repository URL
           type: string
-          description: URL of the destination GitLab repository to push to
+          description: URL of the destination github repository to push to
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
@@ -26,28 +26,28 @@ spec:
         repoUrl:
           title: Source Repository URL
           type: string
-          description: URL of the source GitLab repository to fetch from
+          description: URL of the source github repository to fetch from
 
   steps:
     - id: fetch-repo
-      name: Fetch GitLab Repo
+      name: Fetch github Repo
       action: fetch:plain
       input:
         targetPath: ./
         url: ${{ parameters.repoUrl }}
 
     - id: acme-file-create
-      name: Fetch GitLab Repo
+      name: Fetch github Repo
       action: acme:file:create
       input:
         contents: "hello"
         filename: "xyz.yaml"
     - id: publish
-      name: Publish to GitLab ()
-      action: publish:gitlab
+      name: Publish to github ()
+      action: publish:guthub
       input:
         allowedHosts: ['github.com']
-        # repoUrl: github.com/${{ parameters.gitlabGroup }}/${{ parameters.name }}
+        # repoUrl: github.com/${{ parameters.githubGroup }}/${{ parameters.name }}
         repoUrl: ${{ parameters.publishUrl }}
         defaultBranch: main
         gitCommitMessage: Initial commit for ${{ parameters.name }}
